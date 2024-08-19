@@ -1,0 +1,85 @@
+local smartaccountpermsUI = Instance.new("Frame") -- create a frame
+smartaccountpermsUI.Parent = frame -- change parent to window
+smartaccountpermsUI.Size = UDim2.new(1.002, 0, 0.885, 0) -- set size
+smartaccountpermsUI.Position = UDim2.new(0, 0, 0.113, 0) -- set position
+smartaccountpermsUI.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- set color
+smartaccountpermsUI.BackgroundTransparency = 0.5 -- background transparency
+smartaccountpermsUI.Name = "smartaccountpermsUI" -- set name
+
+local ui = Instance.new("Frame") -- create a second ui
+local corner = Instance.new("UICorner") -- create a ui corner
+ui.Parent = smartaccountpermsUI -- set parent
+corner.Parent = ui -- set corner parent
+ui.Position = UDim2.new(0.233, 0, 0.052, 0) -- ui position
+ui.Size = UDim2.new(0.483, 0, 0.891, 0) -- set size
+corner.CornerRadius = UDim.new(0, 8) -- set corner
+
+local appInfo = game.ReplicatedStorage.universeUpdates.sswindowTemplate1.Frame.Frame.ImageLabel:Clone()
+appInfo.Parent = ui
+appInfo.Image = "rbxassetid://16838358026" -- default image : ss info | change the id to whatever you want
+appInfo.Name = "appInfo"
+appInfo.TextLabel.Text = "AppName" -- change to your app name "like this"
+
+local scroller = Instance.new("ScrollingFrame") -- create scroller
+scroller.Parent = ui -- set parent
+scroller.BorderSizePixel = 0
+scroller.Position = UDim2.new(0.037, 0, 0.34, 0) -- set position
+scroller.Size = UDim2.new(0.921, 0, 0.462, 0) -- set size
+scroller.AutomaticCanvasSize = Enum.AutomaticSize.Y
+
+local scrollerPermTemplate = Instance.new("Frame") 
+scrollerPermTemplate.BackgroundColor3 = Color3.fromRGB(188, 188, 188)-- create a frame
+scrollerPermTemplate.BorderSizePixel = 0
+scrollerPermTemplate.Visible = false
+scrollerPermTemplate.Parent = scroller -- set parent
+scrollerPermTemplate.Size = UDim2.new(0.81, 0, 0.372, 0) -- set size
+local label1 = Instance.new("TextLabel") -- create label
+label1.BorderSizePixel = 0
+label1.TextScaled = true
+label1.BackgroundTransparency = 1
+label1.Parent = scrollerPermTemplate -- set parent
+label1.Size = UDim2.new(1, 0, 0.706, 0) -- set size
+label1.Position = UDim2.new(0, 0, 0.147, 0) -- set position
+local listlayout = Instance.new("UIListLayout") -- create a UIListLayout
+listlayout.Parent = scroller -- set parent
+listlayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+listlayout.VerticalAlignment = Enum.VerticalAlignment.Top
+listlayout.Padding = UDim.new(0, 6)
+
+local button = Instance.new("TextButton") -- create button
+button.Parent = ui -- set parent
+button.Text = "Confirm" -- set text
+button.TextScaled = true
+button.BackgroundColor3 = Color3.fromRGB(188, 188, 188) -- set color
+button.Position = UDim2.new(0.19, 0, 0.832, 0)
+button.Size = UDim2.new(0.62, 0, 0.134, 0)
+local corner2 = Instance.new("UICorner")
+corner2.Parent = button
+corner2.CornerRadius = UDim.new(0, 8)
+
+local permsTable = {"Access to your smartname", 
+	"Access to your smartaccount profile picture"} -- you can add a perm
+
+for i, v in pairs(permsTable) do
+	local new = scrollerPermTemplate:Clone()
+	new.Parent = scroller
+	new.TextLabel.Text = v
+	new.Visible = true
+
+end
+
+button.MouseButton1Click:Connect(function()
+	--[[ Now you can get the player smartcode, smartname and smartaccount profile picture and even datakey.
+	SmartCode File Name : SmartAccount
+	SmartName File Name : SmartAccountName
+	SmartAccount Profile Picture file name : SmartAccountPicture
+	SmartAccount DATAKEY ACCESS FILE NAME : smartaccdatakey
+	All theses files are located in the player leaderstats. The first variable you'll see
+	will select leaderstats.
+	
+	]]
+
+	local leaderstats = game.Players.LocalPlayer:WaitForChild("leaderstats")
+	smartaccountpermsUI.Visible = false
+	local mainUI = frame -- set your main ui location (the ui where player get redirected if he confirm perms)
+end)
