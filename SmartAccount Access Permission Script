@@ -1,3 +1,6 @@
+local frame = game.Players.LocalPlayer.PlayerGui:WaitForChild("Desktop"):WaitForChild("Frame"):WaitForChild("UniverseStudioPreviews")
+-- PUT YOUR APP NAME HERE :  appname
+
 local smartaccountpermsUI = Instance.new("Frame") -- create a frame
 smartaccountpermsUI.Parent = frame -- change parent to window
 smartaccountpermsUI.Size = UDim2.new(1.002, 0, 0.885, 0) -- set size
@@ -16,7 +19,7 @@ corner.CornerRadius = UDim.new(0, 8) -- set corner
 
 local appInfo = game.ReplicatedStorage.universeUpdates.sswindowTemplate1.Frame.Frame.ImageLabel:Clone()
 appInfo.Parent = ui
-appInfo.Image = "rbxassetid://16838358026" -- default image : ss info | change the id to whatever you want
+appInfo.Image = "rbxassetid://16838358026" -- default image : ss icon | change the id to whatever you want
 appInfo.Name = "appInfo"
 appInfo.TextLabel.Text = "AppName" -- change to your app name "like this"
 
@@ -58,7 +61,9 @@ corner2.Parent = button
 corner2.CornerRadius = UDim.new(0, 8)
 
 local permsTable = {"Access to your smartname", 
-	"Access to your smartaccount profile picture"} -- you can add a perm
+	"Access to your smartaccount profile picture",
+	"Acces to smartaccount datakey",
+	"access to smartcode"} -- you can add a perm
 
 for i, v in pairs(permsTable) do
 	local new = scrollerPermTemplate:Clone()
@@ -67,6 +72,22 @@ for i, v in pairs(permsTable) do
 	new.Visible = true
 
 end
+local mainUI = Instance.new("Frame")
+
+mainUI.Parent = frame
+mainUI.Name = "mainUI"
+mainUI.BackgroundTransparency = 1
+mainUI.BorderSizePixel = 0
+mainUI.Visible = false
+local button2 = Instance.new("TextButton")
+button2.Parent = mainUI
+button2.AnchorPoint = Vector2.new(0.5, 0.5)
+button2.Position = UDim2.new(0.5, 0, 0.5, 0)
+
+button2.MouseButton1Click:Connect(function()
+	mainUI.Visible = false
+	smartaccountpermsUI.Visible = true
+end)
 
 button.MouseButton1Click:Connect(function()
 	--[[ Now you can get the player smartcode, smartname and smartaccount profile picture and even datakey.
@@ -81,5 +102,7 @@ button.MouseButton1Click:Connect(function()
 
 	local leaderstats = game.Players.LocalPlayer:WaitForChild("leaderstats")
 	smartaccountpermsUI.Visible = false
-	local mainUI = frame -- set your main ui location (the ui where player get redirected if he confirm perms)
+	
+
+
 end)
