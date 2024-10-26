@@ -1,0 +1,22 @@
+--[[preview script]]
+
+
+
+local desktop = game.Players.LocalPlayer.PlayerGui.Desktop.Frame
+-- dont forget to put :WaitForChild("INSTANCE") when you do your things (remplace INSTANCE by your task name)
+
+--[[example 1
+
+desktop:WaitForChild("Taskbar"):WaitForChild("apps"):WaitForChild("ThemeManager").Disabled = true
+the line 10 disables the taskbar theme script. You can freely custom taskbar color now.
+
+-- IMAGE ID OF SLOT 1
+-- IMAGE ID OF SLOT 2
+-- THEME NAME
+-- CREDITS
+
+
+You can help yourself using Task manager to script
+
+
+]]
